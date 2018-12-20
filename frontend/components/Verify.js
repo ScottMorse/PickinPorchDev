@@ -71,14 +71,14 @@ export default class Verify extends Component {
                     refetchQueries={[{query: CURRENT_USER_QUERY}]}
                     >
                     {(verifyAccount,{data, loading, error}) => {
-                        if(loading) return <p>Loading...</p>
+                        if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                         if(error) return <p>Oops! Something went wrong!</p>
                         if(!this.state.executed) {
                             this.verifyAcc(verifyAccount)
-                            return <p>Loading...</p>
+                            return <div>Loading...<div className="spinner-icon"></div></div>
                         }
                         return <div>
-                            <p>{this.state.executed && this.state.completed ? "Invalid link. " : "Loading..."}</p>
+                            <p>{this.state.executed && this.state.completed ? "Invalid link. " : <div>Loading...<div className="spinner-icon"></div></div>}</p>
                             {this.state.executed && this.state.completed  ? <RequestVerifyAgain/> : ""}
                         </div>
                     }}

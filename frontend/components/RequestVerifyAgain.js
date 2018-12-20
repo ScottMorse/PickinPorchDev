@@ -25,7 +25,7 @@ export default class RequestVerifyAgains extends Component {
                 return <Mutation mutation={REQUEST_VERIFY_MUTATION}
                         variables={{email: currentUser.email}}>
                     {(requestVerify,{data,error,loading})=>{
-                        if(loading) return <p>Loading...</p>
+                        if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                         if(error) return <p>Something went wrong</p>
                         return <StyledButton className="auth-button" onClick={async (e) =>{
                             if(this.state.sent) return

@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 import Router from 'next/router'
 
-import Error from './ErrorMessage'
-
 import User from './User'
 
 import { ALL_ITEMS_QUERY } from '../graphql/queries'
@@ -25,7 +23,7 @@ export default class DeleteItem extends Component {
                 if(!currentUser.saleItems.map(saleItem => saleItem.id).includes(item.id)) return ""
                 return <Mutation mutation={DELETE_ITEM_MUTATION} variables={{id: item.id}} refetchQueries={[{query: ALL_ITEMS_QUERY}]}>
                 {(deleteItem,{data, error, loading}) => {
-                    if(loading) return <p>Loading...</p>
+                    if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                     if(error) return <p>Oops! Something went wrong with this page! (Failed to delete)</p>
                     return <button onClick={(async (e) => {
                         if(this.state.text != "Delete") return

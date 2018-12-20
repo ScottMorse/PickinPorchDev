@@ -31,7 +31,7 @@ export default class Items extends Component {
         return (
             <Query query={PAGINATION_QUERY}>
                 {({data, loading, error}) => {
-                    if(loading) return <p>Loading...</p>
+                    if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                     if(error) return <p>Something went wrong!</p>
                     const pageQuery = this.props.page
                     const count = data.itemsConnection.aggregate.count
@@ -42,7 +42,7 @@ export default class Items extends Component {
                     <Pagination page={page} pages={pages}/>
                     <Query query={ALL_ITEMS_QUERY} variables={{skip: perPage * (page - 1), first: perPage}}>
                     {({data,error,loading}) => {
-                        if(loading) return <p>Loading...</p>
+                        if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                         if(error) return <p>Oops! Something went wrong with this page!</p>
                         return <ItemList>
                             {data.items.map(item => {

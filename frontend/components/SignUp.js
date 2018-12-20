@@ -94,7 +94,7 @@ const StyledPassMess = styled.div`
     color: ${props => props.good ? "chartreuse":"red"}
 `
 
-const passwordMessages = [
+export const passwordMessages = [
     [lowerCase,"Must contain a lowercase character"],
     [upperCase,"Must contain an uppercase character"],
     [numeric,"Must contain a digit 0-9"],
@@ -155,7 +155,7 @@ export default class SignUp extends Component {
         return <Mutation mutation={SIGNUP_MUTATION} variables={{name: this.state.name,email: this.state.email,password: this.state.password,company: this.state.company,isVendor: this.state.isVendor}} 
                 refetchQueries={[{query: CURRENT_USER_QUERY}]}>
             {(signup,{data, loading, error}) => {
-                if(loading) return <p>Loading...</p>
+                if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                 if(error) return <p>Ooops! Something went wrong!</p>
                 return <span><StyledForm method="post" onSubmit={async (e) => {
                     e.preventDefault()

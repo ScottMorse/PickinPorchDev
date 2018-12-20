@@ -6,7 +6,6 @@ function createClient({headers}) {
   return new ApolloClient({
     uri: endpoint,
     request: operation => {
-      console.log(operation)
       operation.setContext({
         fetchOptions: {
           credentials: 'include',

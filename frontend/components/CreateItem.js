@@ -5,11 +5,10 @@ import { Mutation } from 'react-apollo'
 import Router from 'next/router'
 import styled, { keyframes } from 'styled-components'
 
-import Error from './ErrorMessage'
 import User from './User'
 import RequestVerifyAgain from './RequestVerifyAgain'
 
-import { ALL_ITEMS_QUERY, PRODUCT_PAGINATION_QUERY } from '../graphql/queries'
+import { ALL_ITEMS_QUERY } from '../graphql/queries'
 import { CREATE_ITEM_MUTATION } from '../graphql/mutations'
 
 const PageWrap = styled.div`
@@ -137,8 +136,11 @@ export default class CreateItem extends Component {
                 return <Mutation mutation={CREATE_ITEM_MUTATION} 
                 variables={{...this.state,price:Math.round(this.state.price * 100)}} 
                 refetchQueries={[{query: ALL_ITEMS_QUERY}]}>
-                {(createItem,{ loading, error, called, data}) => (
-                    <PageWrap>
+                {(createItem,{ loading, error, called, data}) => 
+                {
+                    if(loading) return <div>Loading...<div className="spinner"></div></div>
+                    if(error) return <p>Oops! Something went wrong!</p>
+                    return <PageWrap>
                     <h1>Add a new product</h1>
                     <StyledForm id="form" onSubmit={(async e => {
                         e.preventDefault()
@@ -152,7 +154,6 @@ export default class CreateItem extends Component {
                             query: { id: res.data.createItem.id}
                         })
                         })}>
-                        <Error error={error}/>
                         <FieldSet disabled={loading} aria-busy={loading}>
                             <label htmlFor="title">
                                 Title
@@ -173,7 +174,7 @@ export default class CreateItem extends Component {
                             <button className="auth-button" type="submit">Submit</button>
                         </FieldSet>
                     </StyledForm></PageWrap>
-                )}
+                }}
                 </Mutation>
             }}
         </User>

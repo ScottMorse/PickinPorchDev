@@ -13,7 +13,9 @@ const StyledLogout = styled.button`
 export default class Logout extends Component {
     render(){
         return <Mutation mutation={LOGOUT_MUTATION} refetchQueries={[{query: CURRENT_USER_QUERY}]}>
-            {(logout)=>{
+            {(logout,{data,loading,error})=>{
+                if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
+                if(error) return <p>Oops! Something went wrong!</p>
                 return <form method="post" onSubmit={async (e)=>{
                     e.preventDefault()
                     await logout()

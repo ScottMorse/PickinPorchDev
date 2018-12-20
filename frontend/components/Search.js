@@ -134,7 +134,7 @@ export default class AutoComplete extends Component {
                         </ApolloConsumer>
                         <div className="drop-down drop">
                             {this.state.items.length > 0 ? <div className="search-item drop">Search results:</div> : ""}
-                            {this.state.loading ? <div className="search-item drop">Searching...</div> : this.state.items.map((item,i) => {
+                            {this.state.loading ? <div className="search-item drop">Searching...<div className="spinner-icon"></div></div> : this.state.items.map((item,i) => {
                                 return <SearchItem {...getItemProps({item})} key={i} highlighted={i === highlightedIndex} className="search-item drop">
                                     <div className="drop">{item.title}</div>
                                 </SearchItem>

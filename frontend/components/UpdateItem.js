@@ -6,8 +6,6 @@ import styled, { keyframes } from 'styled-components'
 import { ALL_ITEMS_QUERY, GET_ITEM_QUERY } from '../graphql/queries'
 import { UPDATE_ITEM_MUTATION } from '../graphql/mutations'
 
-import Error from './ErrorMessage'
-
 const StyledForm = styled.form`
 `
 
@@ -130,7 +128,7 @@ export default class UpdateItem extends Component {
     render(){
         return <Query query={GET_ITEM_QUERY} variables={{id:this.props.id}}>
             {({data, error, loading}) => {
-                if(loading) return <p>Loading...</p>
+                if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                 if(error) return <p>Oops! Something went wrong with this page!</p>
                 if(!data.item) return <p>Uh oh, item not found!</p>
                 if(this.state == emptyState && data.item != emptyState){
@@ -176,6 +174,3 @@ export default class UpdateItem extends Component {
             </Query>
     }
 }
-
-export { CREATE_ITEM_MUTATION }
-export { GET_ITEM_QUERY }

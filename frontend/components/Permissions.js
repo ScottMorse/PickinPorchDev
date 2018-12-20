@@ -82,7 +82,7 @@ class UserTableRow extends Component {
                     }>
                     {(updatePermissions,{data,loading,error}) => {
                         if(error) return <p>Something went wrong</p>
-                        if(loading) return <p>Loading...</p>
+                        if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                         return <button onClick={ async (e) => {
                             const updatedUser = await updatePermissions()
                             if(updatedUser){
@@ -108,14 +108,14 @@ export default class Permissions extends Component{
         return <User>
             {(data)=> {
                 if(data.loading){
-                    return <div>Loading...</div>
+                    return <div>Loading...<div className="spinner-icon"></div></div>
                 }
                 if(!data.data.currentUser){
                     return <div>You do not have permission to use this page.</div>
                 }
                 return <Query query={USERS_QUERY}>
                     {({data, loading, error}) => {
-                        if(loading) return <div>Loading...</div>
+                        if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                         if(error) return <div>Oops! Something went wrong with this page</div>
                         if(!data.users){
                             return <div>You do not have permission to use this page.</div>

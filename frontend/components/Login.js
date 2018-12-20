@@ -63,7 +63,7 @@ export default class SignUp extends Component {
         return <Mutation mutation={LOGIN_MUTATION} variables={{email: this.state.email, password: this.state.password}} refetchQueries={[{query: CURRENT_USER_QUERY}]}>
             {(login,{loading, error}) => {
                 let invalid = ''
-                if(loading) return <p>Loading...</p>
+                if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                 if(error) return <p>Oops! Something went wrong!</p>
                 return <StyledForm method="post" onSubmit={async (e) => {
                     e.preventDefault()

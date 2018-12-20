@@ -99,7 +99,7 @@ export default class CartItem extends Component {
         return <StyledCartItem>
             <Mutation mutation={UPDATE_QUANTITY_MUTATION} variables={this.state} refetchQueries={[{query: CURRENT_USER_QUERY}]}>
                 {(updateQuantity,{data,loading,error}) => {
-                    if(loading) return "Loading..."
+                    if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                     if(error) return "Oops, something went wrong!"
                     return <div className="cart-item-wrap">
                         {item ? [<div key="shut" className="cart-item-title">{item.title}</div>,
@@ -132,7 +132,7 @@ export default class CartItem extends Component {
                             }
                         }}>
                             {(deleteCartItem,{data,loading,error}) => {
-                                if(loading) return "Loading..."
+                                if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                                 if(error) return "Something went wrong!"
                                 return <button className="delete-cart-item" onClick={async () => {
                                     const deletedItem = await deleteCartItem()

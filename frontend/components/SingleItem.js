@@ -18,7 +18,7 @@ export default class SingleItem extends Component {
     render(){
         return <Query query={GET_ITEM_QUERY} variables={{id: this.props.query.id}}>
             {({data, loading, error}) => {
-                if(loading) return <p>Loading...</p>
+                if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                 if(error) return <p>Oops! Something went wrong with this page!</p>
                 if(!data.item) return <p>Uh oh, item not found!</p>
                 return <StyledItemPage>

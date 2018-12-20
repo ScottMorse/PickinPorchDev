@@ -192,7 +192,7 @@ export default class Item extends Component {
                     </Link>}
                 <Mutation mutation={ADD_TO_CART_MUTATION} variables={{itemId: item.id}} refetchQueries={[{query: CURRENT_USER_QUERY}]}>
                     {(addToCart,{cartData,loading,error}) => {
-                        if(loading) return <button className="cart-button">Loading...</button>
+                        if(loading) return <button className="cart-button"><div>Loading...<div className="spinner-icon"></div></div></button>
                         if(error) return <p>Something went wrong!</p>
                         return !currentUser ? 
                             <button className="cart-button" onClick={ async () => {

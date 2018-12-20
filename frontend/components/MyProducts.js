@@ -86,7 +86,7 @@ export default class MyProducts extends Component{
                     <h1>{currentUser.company}</h1>
                     <Query query={PRODUCT_PAGINATION_QUERY} variables={{userId: currentUser.id}}>
                 {({data, loading, error}) => {
-                    if(loading) return <p>Loading...</p>
+                    if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                     if(error) return <p>Something went wrong!</p>
                     const pageQuery = this.props.page
                     const count = data.itemsConnection.aggregate.count
@@ -99,7 +99,7 @@ export default class MyProducts extends Component{
                                 first: productsPerPage
                             }}>
                     {({data,error,loading}) => {
-                        if(loading) return <p>Loading...</p>
+                        if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                         if(error) return <p>Oops! Something went wrong!</p>
                         const { items } = data
                         return <StyledProdcuts>

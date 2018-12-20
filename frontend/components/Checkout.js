@@ -39,7 +39,7 @@ export default class Checkout extends Component {
                     return  <Mutation mutation={PLACE_ORDER_MUTATION} 
                             refetchQueries={[{query: CURRENT_USER_QUERY}]}>
                             {(placeOrder,{data,error,loading}) => {
-                                if(loading) return <p>Loading...</p>
+                                if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                                 if(error) return <p>Oops! Something went wrong!</p>
                                 if(!currentUser.isVerified) return <div>
                                     Please verify your account to checkout.

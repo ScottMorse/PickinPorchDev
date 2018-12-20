@@ -38,7 +38,7 @@ export default class ItemSalesData extends Component {
             return <Query query={ORDER_ITEMS_QUERY} variables={{userId: currentUser.id}}>
                 {({data,error,loading})=>{
                     if(error) return <p>Oops! Something went wrong!</p>
-                    if(loading) return <p>Loading...</p>
+                    if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                     const { orderItems } = data
                     const currentMonth = new Date().getMonth() + 1
                     const currentYear = new Date().getFullYear()
@@ -152,7 +152,7 @@ export default class ItemSalesData extends Component {
                         <h1>{currentUser.company}</h1>
                         {CanvasJS ? <CanvasJSChart options = {options} 
                                         onRef={ref => this.chart = ref}
-                                    /> : "Loading..."}
+                                    /> : <div>Loading...<div className="spinner-icon"></div></div>}
                             <ProductsBreakdown productTotals={productTotals}/>
                     </StyledSalesData>
                 }}

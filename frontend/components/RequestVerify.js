@@ -43,7 +43,7 @@ export default class RequestVerify extends Component {
                         variables={{email: currentUser.email}}
                         refetchQueries={[{query: CURRENT_USER_QUERY}]}>
                     {(requestVerify,{data,error,loading})=>{
-                        if(loading) return <p>Loading...</p>
+                        if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                         if(error) return <p>Something went wrong</p>
                         if(this.state.verifySent || currentUser.verifySent) return <StyledPage><div>Check your email at <span id="underline">{currentUser.email}</span> to verify your account. </div><RequestVerifyAgain/></StyledPage>
                         this.reqVerify(requestVerify)

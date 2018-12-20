@@ -64,7 +64,7 @@ export default class Request extends Component {
     render(){
         return <Mutation mutation={REQUEST_MUTATION} variables={{email: this.props.accountPage ? this.props.email : this.state.email}} refetchQueries={[{query: CURRENT_USER_QUERY}]}>
             {(requestReset,{loading, error, called}) => {
-                if(loading) return <p>Loading...</p>
+                if(loading) return <div>Loading...<div className="spinner-icon"></div></div>
                 if(error) return <p>Oops! Something went wrong!</p>
                 return <StyledForm id='request-form' method="post" onSubmit={async (e) => {
                     e.preventDefault()
