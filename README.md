@@ -5,5 +5,5 @@
 * ### Backend: GraphQL Yoga (An Express-based server for GraphQL), Prisma (database server)
 I'd like to give credit to Wes Bos for his information on how to set up an ecommerce site with these technologies, which I used as a springboard for this project.
 
-
+**This website is themed as a guitarist/musician's equipment website.**
 ![](https://github.com/ScottMorse/PickinPorchDev/blob/master/gifs/Shop.gif)
