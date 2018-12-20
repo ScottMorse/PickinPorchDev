@@ -1,0 +1,67 @@
+enum Permission {
+  ADMIN
+  USER
+  ITEMCREATE
+  ITEMUPDATE
+  ITEMDELETE
+  VIEWORDERS
+  PERMISSIONUPDATE
+}
+
+type User {
+  id: ID! @unique
+  isVendor: Boolean!
+  name: String!
+  company: String
+  email: String! @unique
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  verifyToken: String
+  verifyTokenExpiry: String
+  verifySent: Boolean @default(value: false)
+  isVerified: Boolean @default(value: false)
+  permissions: [Permission]
+  cart: [CartItem]
+  saleItems: [Item]
+  orders: [Order]
+}
+
+type Item {
+  id: ID! @unique
+  title: String!
+  description: String!
+  image: String
+  largeImage: String
+  price: Int!
+  user: User!
+}
+
+type CartItem {
+  id: ID! @unique
+  quantity: Int! @default(value: 1)
+  item: Item
+  user: User!
+}
+
+type Order {
+  id: ID! @unique
+  user: User!
+  items: [OrderItem]
+  total: Int!
+  charge: String!
+  datePlaced: DateTime!
+  estimatedDelivery: DateTime
+}
+
+type OrderItem {
+  id: ID! @unique
+  quantity: Int! @default(value: 1)
+  item: Item
+  title: String!
+  price: Int!
+  description: String
+  image: String
+  user: User!
+  order: Order!
+}

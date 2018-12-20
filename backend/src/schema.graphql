@@ -1,0 +1,48 @@
+# import * from './generated/prisma.graphql'
+type Message {
+    message: String
+}
+
+type OrderData {
+    datePlaced: DateTime
+    quantity: Int
+    price: Int
+}
+
+type SalesData {
+    numberSold: Int
+    totalProfit: Int
+    orderDatas: [OrderData]
+}
+
+type Mutation {
+    createItem(title: String, description: String, price: Int, image: String, largeImage: String): Item
+    createUser(name: String, email: String, password: String, company: String): User!
+    updateItem(id: ID!, title: String, description: String, price: Int, image: String, largeImage: String): Item
+    deleteItem(id: ID!): Item
+    signup(email: String!, password: String!, name: String!,company: String, isVendor: Boolean): Message
+    logout: Message
+    login(email: String!, password: String!): User
+    requestReset(email: String!): Message
+    resetPassword(resetToken: String!, password: String!): User!
+    updatePermissions(email: String!, permissions: [Permission]!): User
+    createOrder: Order
+    addToCart(itemId: ID!): CartItem
+    changeCartItemQuantity(id: ID!,quantity: Int!): CartItem,
+    deleteCartItem(id: ID!): CartItem
+    placeOrder(token: String!): Order
+    requestVerify(email: String!): Message
+    verifyAccount(verifyToken: String!): User
+}
+
+type Query {
+    items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, first: Int): [Item]!
+    users: [User]
+    item(where: ItemWhereUniqueInput!): Item
+    itemsConnection(where: ItemWhereInput): ItemConnection!
+    currentUser: User
+    allOrders(orderBy: OrderOrderByInput): [Order]
+    userOrders(where: OrderWhereInput,orderBy: OrderOrderByInput): [Order]
+    orderItems(where: OrderItemWhereInput): [OrderItem]
+    orderItemSales(where: OrderItemWhereInput): SalesData
+}
