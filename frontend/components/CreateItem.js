@@ -22,7 +22,7 @@ const StyledForm = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: lightsteelblue;
+    background-color: palegreen;
     box-shadow: 2px 5px 15px -2px rgba(0,0,0,0.4);
     border-radius: 20%;
     width: 290px;
@@ -62,6 +62,7 @@ const FieldSet = styled.fieldset`
     }
     &[aria-busy='true']::before {
         content: 'Loading';
+        font-family: 'Open Sans';
         text-align: center;
         text-shadow: 2px 2px 2px whitesmoke;
         color: yellow;

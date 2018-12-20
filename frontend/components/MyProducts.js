@@ -41,8 +41,7 @@ const StyledProdcuts = styled.div`
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin: 40px;
-        margin-bottom: 10px;
+        margin: 30px 10px 0 10px;
         border: 2px solid ${props => props.theme.black};
         font-size: 12px;
         text-align: center;
@@ -56,11 +55,17 @@ const StyledProdcuts = styled.div`
         flex-direction: column;
         justify-content: space-between;
         height: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
     .user-product-title{
         font-size: 15px;
         font-weight: bold;
+        max-height: 150px;
+        height: 150px;
         margin: 15px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid lightgrey;
     }
     .edit{
         font-size: 16px;

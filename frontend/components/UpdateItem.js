@@ -7,6 +7,17 @@ import { ALL_ITEMS_QUERY, GET_ITEM_QUERY } from '../graphql/queries'
 import { UPDATE_ITEM_MUTATION } from '../graphql/mutations'
 
 const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lightsteelblue;
+    box-shadow: 2px 5px 15px -2px rgba(0,0,0,0.4);
+    border-radius: 20%;
+    width: 290px;
+    padding: 0 50px;
+    margin-left: auto;
+    margin-right: auto;
 `
 
 const LoadingAnimation = keyframes`
@@ -17,7 +28,7 @@ const FieldSet = styled.fieldset`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    border: none;
     label{
         display: flex;
         flex-direction: column;
@@ -36,6 +47,7 @@ const FieldSet = styled.fieldset`
     }
     &[aria-busy='true']::before {
         content: 'Loading';
+        font-family: 'Open Sans';
         text-align: center;
         text-shadow: 2px 2px 2px whitesmoke;
         color: yellow;
@@ -136,6 +148,7 @@ export default class UpdateItem extends Component {
                 }
                 return <Mutation mutation={UPDATE_ITEM_MUTATION} variables={{id: this.props.id,...this.state,price:Math.round(this.state.price * 100)}} update={this.update} refetchQueries={[{query: ALL_ITEMS_QUERY}]}>
                 {(updateItem,{ loading, error, called}) => (
+                    [<h2 style={{textAlign: "center"}}>Update Item: {data.item.title}</h2>,
                     <StyledForm id="form" onSubmit={(async e => {
                         e.preventDefault()
                         const update = await updateItem()
@@ -148,7 +161,6 @@ export default class UpdateItem extends Component {
                             query: { id: update.data.updateItem.id}
                         })
                         })}>
-                        <Error error={error}/>
                         <FieldSet disabled={loading} aria-busy={loading}>
                             <label htmlFor="title">
                                 Title
@@ -163,12 +175,12 @@ export default class UpdateItem extends Component {
                                 <input type="text" id="description" name="description" placeholder="Product description" defaultValue={data.item.description || ''} onChange={this.handleChange} required/>
                             </label>
                             <label htmlFor="image">
-                                Image (recommended): 
+                                Upload Different Image: 
                                 <input type="file" id="image" name="image" placeholder="Upload an Image" onChange={this.uploadFile}/>
                             </label>
-                            <button type="submit">Submit</button>
+                            <button className="auth-button" type="submit">Submit</button>
                         </FieldSet>
-                    </StyledForm>
+                    </StyledForm>]
                     )}
                 </Mutation>}}
             </Query>

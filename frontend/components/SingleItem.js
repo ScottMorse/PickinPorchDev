@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Item from './Item'
 import ItemSalesData from './ItemSalesData'
 
-import { GET_ITEM_QUERY } from '../components/UpdateItem'
+import { GET_ITEM_QUERY } from '../graphql/queries'
 
 const StyledItemPage = styled.div`
     display: flex;
