@@ -19,7 +19,7 @@ While Prisma defines basic database operations, a schema has to be written in Gr
 
 ![](https://github.com/ScottMorse/PickinPorchDev/blob/master/gifs/Shop.gif)
 
-**Users can sign up to sell (vendor option) or buy products.  They must enter a secure password and username. I made sure to check this on both client and server side with regular expressions.  They then need to verify their account with an email that uses a JWT in order to access unlock the permissions to sell or buy.**
+**Users can sign up to sell (vendor option) or buy products.  They must enter a secure password and username. I made sure to check this on both client and server side with regular expressions.  They then need to verify their account with an email that uses a JWT in order to access the permissions to sell or buy.**
 
 ![](https://github.com/ScottMorse/PickinPorchDev/blob/master/gifs/SignUp.gif)
 
