@@ -4,8 +4,15 @@
 
 ### Frontend: 
 * React, Next.js, ApolloClient, Styled Components
+
+The front end is based in React entirely.  Next.js is a popular framework for server-side rendering React, and it allows for efficient navigation within the site, and includes features such as a router and links which can over-eagerly load pages.  The Apollo Client allows for both local state/cache management and communicating queries and mutations to the GraphQL Yoga backend.  The Styled Components libary is the primary tool for styling.
+
 ### Backend: 
-* GraphQL Yoga (An Express-based server for GraphQL), Prisma (database server)
+* GraphQL Yoga, Prisma
+
+The Prisma service is the home of the database for the app, which is based in PostgreSQL, but is handled by the GraphQL language.  Prisma allows for basic CRUD operations in GraphQL on each type defined in the datamodel supplied for the DB.  GraphQL Yoga then is used to run an Express-based server which can communicate with the Prisma endpoint.  
+
+While Prisma defines basic database operations, a schema has to be written in GraphQL for the Yoga server, along with "resolvers", to fully define the queries and mutations that will be used by the application.  This is done by creating a named operation in a GraphQL Schema, which identifies any required/optional arguments and the type that can be returned, and a resolver must be written which will often combine a Prisma operation with the arguments supplied, and return a result to the client.
 
 **This website is themed as a guitarist/musician's equipment website.**
 
