@@ -41,3 +41,5 @@ While Prisma defines basic database operations, a schema has to be written in Gr
 **This website is mobile responsive.**
 
 ![](https://github.com/ScottMorse/PickinPorchDev/blob/master/gifs/Mobile.gif)
+
+*I need to give a shout out to Wes Bos for his information on how to set up a project with these technologies.  This was the springboard for this application.*
