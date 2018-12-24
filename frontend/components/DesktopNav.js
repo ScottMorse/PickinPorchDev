@@ -29,6 +29,7 @@ const NavA = styled.a`
 export default class DesktopNav extends Component {
 
     render(){
+        if(!this.props) return <span></span>
         const { currentUser } = this.props
         return <StyledNav>
             <Link href="../items">

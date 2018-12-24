@@ -27,9 +27,10 @@ const StyledCart = styled.div`
         background-color: white;
         background-image: url('/static/imgs/texture.png');
         z-index: 10;
+        opacity: ${props => props.open ? "1" : "0"};
         box-shadow: ${props => props.open ? "0 0 5px 5px rgba(0,0,0,0.2)" : "0 0 0 0 white"};
         transform: ${props => props.open ? "translateX(0px)" : "translateX(500px)"};
-        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        transition: transform 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
         #x-button-cart {
             font-size: 25px;
             display: flex;
@@ -39,9 +40,7 @@ const StyledCart = styled.div`
             color: whitesmoke;
             border-radius: 50%;
             width: 35px;
-            height: 30px;
             font-weight: bold;
-            padding-bottom: 35px;
         }
         #cart-content {
             display: flex;
@@ -147,12 +146,15 @@ export default class Cart extends Component {
     }
 
     componentDidMount(){
-        const cartEl = document.getElementById('cart')
-        const offsetRight = Math.floor(window.innerWidth - Math.floor(cartEl.offsetLeft + cartEl.offsetWidth))
-        cartEl.style.marginLeft = offsetRight + "px"
-        cartEl.style.marginTop = "-" + cartEl.offsetTop + "px"
-        this.repositionCart(cartEl)
-        window.addEventListener('resize',() => this.repositionCart(cartEl))
+        this.initCart(document.getElementById('cart'))
+    }
+
+    initCart = (el) => {
+        const offsetRight = Math.floor(window.innerWidth - Math.floor(el.offsetLeft + el.offsetWidth))
+        el.style.marginLeft = offsetRight + "px"
+        el.style.marginTop = "-" + el.offsetTop + "px"
+        this.repositionCart(el)
+        window.addEventListener('resize',() => this.repositionCart(el))
     }
 
     repositionCart = (el) => {

@@ -123,30 +123,44 @@ const nonDigRegEx = new RegExp(/[^-\d]/,'g')
 export default class MobileNav extends Component {
 
     state = {
-        open: false
+        open: false,
+        menu: null,
+        menuButton: null
     }
 
     componentDidMount(){
         const menu = document.getElementById('menu')
         const menuButton = document.getElementById('menu-button')
+        this.setState({menu,menuButton})
         menu.style.marginTop = -menu.offsetTop + "px"
         menuButton.style.marginTop = -menuButton.offsetTop + 5 + "px"
         menuButton.style.marginLeft = -menuButton.offsetLeft + 5 + "px"
-        window.addEventListener('resize',()=>{this.repositionMenu(menu);this.repositionButton(menuButton)})
+        window.addEventListener('resize',this.repositionAll)
         document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click',this.closeMenu))
     }
 
-    repositionMenu = debounce((menu) => {
-        const currMargTop = parseInt(menu.style.marginTop.replace(nonDigRegEx,''))
-        menu.style.marginTop = currMargTop - menu.offsetTop + "px"
+    componentWillUnmount(){
+        window.removeEventListener('resize',this.repositionAll)
+    }
+
+    repositionAll = debounce(() => {
+        this.repositionMenu()
+        this.repositionButton()
     },100)
 
-    repositionButton = debounce((menuButton) => {
+    repositionMenu = () => {
+        const menu = this.state.menu
+        const currMargTop = parseInt(menu.style.marginTop.replace(nonDigRegEx,''))
+        menu.style.marginTop = currMargTop - menu.offsetTop + "px"
+    }
+
+    repositionButton = () => {
+        const menuButton = this.state.menuButton
         const currMargTop = parseInt(menuButton.style.marginTop.replace(nonDigRegEx,''))
         const currMargLeft = parseInt(menuButton.style.marginLeft.replace(nonDigRegEx,''))
         menuButton.style.marginTop = currMargTop - (menuButton.offsetTop - 5) + "px"
         menuButton.style.marginLeft = currMargLeft - (menuButton.offsetLeft - 5) + "px"
-    },100)
+    }
 
     showMenu = () => {
         this.setState({open: true})
@@ -157,6 +171,7 @@ export default class MobileNav extends Component {
     }
 
     render(){
+        if(!this.props) return <span></span>
         const { currentUser } = this.props
         return <StyledMobileNav open={this.state.open}>
             <button id="menu-button" onClick={this.showMenu}>☰ Menu</button>
