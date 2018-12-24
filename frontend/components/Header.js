@@ -130,7 +130,7 @@ export default class Header extends Component {
                 <div id="mask"></div>
             </div>
             <StyledTitle>
-                <Link href="/">
+                <Link href="/items">
                     <a>Pickin' Porch</a>
                 </Link>
                 <Logo scale="1" viewBox="0 0 300 160"/>

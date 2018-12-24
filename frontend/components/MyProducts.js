@@ -41,8 +41,8 @@ const StyledProdcuts = styled.div`
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin: 30px 10px 0 10px;
-        border: 2px solid ${props => props.theme.black};
+        margin: 30px 15px 0 15px;
+        border: 2px solid lightgrey;
         font-size: 12px;
         text-align: center;
         border-radius: 5%/10%;

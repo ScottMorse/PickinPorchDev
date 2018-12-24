@@ -60,7 +60,7 @@ const StyledCart = styled.div`
                 margin-top: 0;
                 margin-bottom: 10px;
             }
-            max-height: 92vh;
+            max-height: 75vh;
             overflow-y: scroll;
             .drop-down::-webkit-scrollbar {
                 -webkit-appearance: none;

@@ -103,8 +103,6 @@ export default class Reset extends Component {
     render(){
         return <User>
             {data => {
-                const { currentUser } = data.data
-                if(!currentUser) return <p>Forbidden</p>
                 return <Mutation mutation={RESET_MUTATION} 
                         variables={{
                             resetToken: this.props.resetToken,

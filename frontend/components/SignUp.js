@@ -176,10 +176,8 @@ export default class SignUp extends Component {
                         }
                     })
                     } catch(e){
-                        console.log(e)
                         return
                     }
-                    console.log('here')
                     const {data: { signup: {message}}} = await signup()
                     if(message !== "success"){
                         this.setState({message})
